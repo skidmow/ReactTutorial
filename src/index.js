@@ -21,6 +21,7 @@ class Board extends React.Component {
   }
 
   render() {
+    // TODO: Create Map to loop this code
     return (
       <div>
         <div className="board-row">
