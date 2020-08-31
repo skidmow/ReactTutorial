@@ -47,7 +47,7 @@ class Game extends React.Component {
     this.state = {
       history: [{
         squares: Array(9).fill(null),
-        indexChanged: null,
+        indexChanged: -1,
       }],
       stepNumber: 0,
       xIsNext: true,
@@ -86,13 +86,22 @@ class Game extends React.Component {
     const winner = calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
-      const colNumber = step.indexChanged % 3 === 0 ? 1 : ((step.indexChanged + 1) % 3 ? 2 : 3);
-
+      let colNumber = 1;
       let rowNumber = 0;
 
       for(let i = 0; i <= step.indexChanged; i += 3)
       {
         rowNumber++;
+      }
+
+      const maxRowIndex = rowNumber * 3 - 1;
+      const minRowIndex = maxRowIndex - 2;
+
+      if(step.indexChanged === maxRowIndex) {
+        colNumber = 3;
+      }
+      else if(step.indexChanged > minRowIndex) {
+        colNumber = 2;
       }
 
       const desc = move ?
