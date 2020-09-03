@@ -81,6 +81,12 @@ class Game extends React.Component {
     })
   }
 
+  toggleHistoryOrder() {
+    this.setState({
+      history: this.state.history.reverse()
+    })
+  }
+
   jumpTo(step) {
     this.setState({
       stepNumber: step,
@@ -140,7 +146,10 @@ class Game extends React.Component {
         </div>
         <div className="game-info">
           <div>{status}</div>
-          <ol>{moves}</ol>
+          <ol>
+            {moves}
+            <li><button onClick={() => this.toggleHistoryOrder()}>Toggle</button></li>
+          </ol>
         </div>
       </div>
     )
