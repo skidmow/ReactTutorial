@@ -20,26 +20,31 @@ class Board extends React.Component {
     )
   }
 
+  renderRow(j, rowLength) {
+    let output = [];
+
+    for(j; j < rowLength && j < 9; j++) {
+      output.push(this.renderSquare(j));
+    }
+
+    return output;
+  }
+
   render() {
     // TODO: Create Map to loop this code
+    let j = 0;
+    let rowLength = 3;
+    let output = [];
+
+    for(let i = 0; i < 3; i++) {
+      output.push(<div className="board-row">{this.renderRow(j, rowLength)}</div>);
+      rowLength = rowLength * 2;
+      j = j+3;
+    }
     return (
-      <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
+      <>
+        <div>{output}</div>
+      </>
     )
   }
 }
